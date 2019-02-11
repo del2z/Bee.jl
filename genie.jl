@@ -12,10 +12,12 @@ Bootstraps the Genie framework setting up paths and workers. Invoked automatical
 function bootstrap() :: Nothing
   cd(@__DIR__)
   printstyled("""
-   _____         _
-  |   __|___ ___|_|___
-  |  |  | -_|   | | -_|
-  |_____|___|_|_|_|___|
+
+     _
+    | |__   ___  ___
+    | '_ \\ / _ \\/ _ \\
+    | |_) |  __/  __/
+    |_.__/ \\___|\\___|
 
   """, color = :magenta)
 
