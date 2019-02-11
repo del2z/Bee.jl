@@ -4,10 +4,14 @@
 module ClassifyController
 
 using Genie.Renderer
+using Genie.Router
 
-struct Book
+mutable struct Book
     title::String
     author::String
+
+    Book(title::String, author::String) = new(title, author)
+    Book(; title::String = "", author::String = "") = new(title, author)
 end
 
 const BillGatesBooks = Book[
@@ -20,6 +24,15 @@ const BillGatesBooks = Book[
 
 function billgatesbooks()
     html!(:classify, :classify, books = BillGatesBooks)
+end
+
+function new()
+    html!(:classify, :submit)
+end
+
+function create()
+    Book(title = @params(:book_title), author = @params(:book_author)) |> println
+    redirect_to(:get_bgbooks)
 end
 
 end

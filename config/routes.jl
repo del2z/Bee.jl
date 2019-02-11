@@ -6,4 +6,6 @@ route("/") do
 end
 
 route("/bgbooks", ClassifyController.billgatesbooks)
+route("/bgbooks/new", ClassifyController.new)
+route("/bgbooks/create", ClassifyController.create, method = POST, named = :create_book)
 
