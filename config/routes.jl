@@ -5,7 +5,7 @@ route("/") do
   serve_static_file("/welcome.html")
 end
 
-route("/bgbooks", ClassifyController.billgatesbooks)
-route("/bgbooks/new", ClassifyController.new)
-route("/bgbooks/create", ClassifyController.create, method = POST, named = :create_book)
+route("/classify", ClassifyController.show)
+route("/classify/anno", ClassifyController.anno)
+route("/classify/submit", ClassifyController.submit, method = POST, named = :show_label)
 

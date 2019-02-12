@@ -2,9 +2,9 @@
 build/*
 cache/*
 config/secrets.jl
-docs/build
 log/*
 session/*
+data/*
 !*.gitkeep
 
 # Vagrant
@@ -25,17 +25,6 @@ Vagrantfile
 
 # OS or Editor folders
 .DS_Store
-.cache
-.project
-.settings
-.tmproj
-nbproject
-Thumbs.db
-*.sublime-project
-*.sublime-workspace
-.vscode
-.tags*
-.tags
 
 # NPM packages folder.
 node_modules/

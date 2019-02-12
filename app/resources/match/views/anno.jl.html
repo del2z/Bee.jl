@@ -1,0 +1,11 @@
+<p>
+  请选择符合每个问题的类别~
+</p>
+<form action="$(Genie.Router.link_to(:create_book))" method="POST">
+  <%
+    @foreach(@vars(:books)) do book
+      """<input type="radio" name="label" value="$(book.title)" />$(book.title)<br />"""
+    end
+  %>
+  <input type="submit" value="确定" />
+</form>
