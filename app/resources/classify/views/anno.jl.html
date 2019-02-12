@@ -1,0 +1,17 @@
+<p>
+  请选择符合每个问题的类别~
+</p>
+<form action="$(Genie.Router.link_to(:show_label))" method="POST">
+  <%
+    @foreach(@vars(:labelset)) do cls
+      """
+      <label style="cursor:pointer">
+        <input type="radio" name="label" value="$(cls.first)" style="cursor:pointer" />
+        $(cls.second)
+      </label>
+      <br />
+      """
+    end
+  %>
+  <input type="submit" value="确定" />
+</form>

@@ -5,34 +5,19 @@ module ClassifyController
 
 using Genie.Renderer
 using Genie.Router
+import LabelSet: Labels
 
-mutable struct Book
-    title::String
-    author::String
-
-    Book(title::String, author::String) = new(title, author)
-    Book(; title::String = "", author::String = "") = new(title, author)
+function show()
+    html!(:classify, :show, labelset = Labels)
 end
 
-const BillGatesBooks = Book[
-    Book("The Best We Could Do", "Thi Bui"),
-    Book("Evicted: Poverty and Profit in the American City", "Matthew Desmond"),
-    Book("Believe Me: A Memoir of Love, Death, and Jazz Chickens", "Eddie Izzard"),
-    Book("The Sympathizer", "Viet Thanh Nguyen"),
-    Book("Energy and Civilization, A History", "Vaclav Smil")
-]
-
-function billgatesbooks()
-    html!(:classify, :classify, books = BillGatesBooks)
+function anno()
+    html!(:classify, :anno, labelset = Labels)
 end
 
-function new()
-    html!(:classify, :submit)
-end
-
-function create()
-    Book(title = @params(:book_title), author = @params(:book_author)) |> println
-    redirect_to(:get_bgbooks)
+function submit()
+    @params(:label) |> println
+    redirect_to(:get_classify)
 end
 
 end
