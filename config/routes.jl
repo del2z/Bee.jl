@@ -1,9 +1,9 @@
 using Genie.Router
+using IndexController
 using ClassifyController
 
-route("/") do
-  serve_static_file("/welcome.html")
-end
+route("/", IndexController.index)
+route("/index", IndexController.index)
 
 route("/classify", ClassifyController.show)
 route("/classify/anno", ClassifyController.anno)
