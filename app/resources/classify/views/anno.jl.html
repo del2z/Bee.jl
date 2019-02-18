@@ -1,17 +1,19 @@
-<p>
-  请选择符合每个问题的类别~
-</p>
-<form action="$(Genie.Router.link_to(:show_label))" method="POST">
-  <%
-    @foreach(@vars(:labelset)) do cls
-      """
-      <label style="cursor:pointer">
-        <input type="radio" name="label" value="$(cls.first)" style="cursor:pointer" />
-        $(cls.second)
-      </label>
-      <br />
-      """
-    end
-  %>
-  <input type="submit" value="确定" />
-</form>
+<div class="anno" style="margin-top: 30px">
+  <h3 style="font-size: 120%;">
+    <% @vars(:query) %>
+  </h3>
+  <form action="$(Genie.Router.link_to(:submit_classify))" method="POST">
+    <%
+      @foreach(@vars(:labelset)) do cls
+        """
+        <label style="cursor:pointer">
+          <input type="radio" name="label" value="$(cls.first)" style="cursor:pointer" />
+          $(cls.second)
+        </label>
+        <br />
+        """
+      end
+    %>
+    <input type="submit" value="下一个" class="am-btn am-btn-primary am-btn-sm am-fl" />
+  </form>
+</div>

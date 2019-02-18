@@ -5,19 +5,26 @@ module ClassifyController
 
 using Genie.Renderer
 using Genie.Router
-import LabelSet: Labels
-
-function show()
-    html!(:classify, :show, labelset = Labels)
-end
+using ClassifyModel
 
 function anno()
-    html!(:classify, :anno, labelset = Labels)
+    query = ClassifyModel.getquery(ClassifyModel.DataSet)
+    if query === nothing
+        html!(:classify, :save)
+    else
+        html!(:classify, :anno, query = "Q: " * query, labelset = ClassifyModel.Labels)
+    end
 end
 
 function submit()
     @params(:label) |> println
     redirect_to(:get_classify)
+end
+
+function save()
+    ClassifyModel.dumpdata(ClassifyModel.DataSet)
+    @params(:label) |> println
+    redirect_to(:get)
 end
 
 end

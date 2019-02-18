@@ -1,8 +1,0 @@
-<h1>Bill's Gates top $( length(@vars(:labelset)) ) recommended books</h1>
-<ul>
-   <%
-      @foreach(@vars(:labelset)) do cls
-         "<li>$(cls.first) by $(cls.second)"
-      end
-   %>
-</ul>

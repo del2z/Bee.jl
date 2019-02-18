@@ -1,0 +1,17 @@
+<h3>
+  <% @vars(:query) %>
+</h3>
+<form action="$(Genie.Router.link_to(:submit_classify))" method="POST">
+  <%
+    @foreach(@vars(:labelset)) do cls
+      """
+      <label style="cursor:pointer">
+        <input type="radio" name="label" value="$(cls.first)" style="cursor:pointer" />
+        $(cls.second)
+      </label>
+      <br />
+      """
+    end
+  %>
+  <input type="submit" value="确定" />
+</form>
