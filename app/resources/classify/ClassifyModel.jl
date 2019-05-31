@@ -8,7 +8,7 @@ using DataFrames
 using DataStructures
 
 function loadlabel(fname::AbstractString)
-    df = CSV.read(fname, delim = ",")
+    df = CSV.read(fname, delim = ",", header = 0)
     list = filter(s -> !startswith(coalesce(s, "#"), "#"), df[1])
     OrderedDict(enumerate(list))
 end
@@ -23,7 +23,8 @@ mutable struct ClassifyData
     ClassifyData(queryset::Vector{String}) = new(queryset, fill("", size(queryset, 1)), size(queryset, 1), 0)
     function ClassifyData(queryset::Vector{String}, labelset::Vector{String})
         @assert size(queryset, 1) >= size(labelset, 1)
-        new(queryset, labelset, size(queryset, 1), size(labelset, 1))
+        new(queryset, vcat(labelset, fill("", size(queryset, 1) - size(labelset, 1))),
+            size(queryset, 1), size(labelset, 1))
     end
 end
 
@@ -37,11 +38,11 @@ function update!(data::ClassifyData, label::AbstractString)
 end
 
 function loadquery(fquery::AbstractString, fcache::AbstractString = "")
-    dfq = CSV.read(fquery, delim = ",")
+    dfq = CSV.read(fquery, delim = ",", header = 0)
     queryset = collect(skipmissing(dfq[1]))
     if fcache != ""
-        dfc = CSV.read(fcache, delim = ",")
-        index = minimum(filter(k -> ismissing(dfc[k, 2]), 1:size(df, 1)))
+        dfc = CSV.read(fcache, delim = ",", header = 0)
+        index = minimum(filter(k -> ismissing(dfc[k, 2]) || dfc[k, 2] == "", 1:size(df, 1)))
         if index > 1
             @assert dfc[1:(index - 1), 1] == queryset[1:(index - 1)]
             labelset = collect(skipmissing(dfc[1:(index - 1), 2]))
@@ -52,10 +53,10 @@ function loadquery(fquery::AbstractString, fcache::AbstractString = "")
 end
 
 function dumpdata(data::ClassifyData)
-    df = DataFrame()
-    CSV.write(df, "", delim = ",", writeheader = false)
+    df = DataFrame(query = data.queries, label = data.labels)
+    CSV.write("data/classify_out.csv", df, delim = ",", writeheader = false)
 end
 
-DataSet = loadquery("data/classify_query.csv")
+DataSet = loadquery("data/demo_query.csv")
 
 end

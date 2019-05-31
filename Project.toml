@@ -1,3 +1,8 @@
+name = "Bee"
+uuid = "fd0ab7a0-336e-57bd-9c96-2e7fe0706584"
+authors = ["del2z <delta.z@aliyun.com>"]
+version = "0.1.0"
+
 [deps]
 Genie = "c43c736e-a2d1-11e8-161f-af95117fbd1e"
 JSON = "682c06a0-de6a-54ab-a142-c8b1cf79cde6"
