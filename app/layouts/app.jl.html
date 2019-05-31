@@ -1,22 +1,77 @@
 <!DOCTYPE html>
 <html lang="zh-cmn">
-  <head>
-    <meta charset="utf-8">
-    <title>Bee · 中文NLP语料标注系统</title>
-    <!-- <link rel="stylesheet" href="/css/application.css"> -->
-  </head>
-  <body>
-    <h1 align="center">Bee：中文NLP语料标注系统（测试版）</h1>
-    <div class="container" style="
-      margin-top: 36px;
-      margin-left: 10%;
-      margin-right: 10%;
-      background-color: skyblue;
-    ">
+<head>
+  <meta charset="utf-8" />
+  <title>Bee · 中文NLP语料标注系统</title>
+  <link rel="stylesheet" href="/css/amazeui.min.css" />
+  <style>
+    html, body {
+      height: 100%;
+    }
+    a {
+      color: lightskyblue;
+    }
+    .main {
+      background: #3399CC;
+      color: #fff;
+      text-align: center;
+      padding: 50px 0 20px 0;
+    }
+    .main-title {
+      font-size: 200%;
+      border: 2px solid #fff;
+      padding: 20px;
+      display: inline-block;
+    }
+    .main p {
+      font-size: 120%;
+    }
+    .main p a {
+      font-weight: bold;
+    }
+    .detail {
+      min-height: 60%;
+      margin-top: 30px;
+      margin-bottom: 30px;
+    }
+    .footer p {
+      color: #7f8c8d;
+      margin: 0;
+      padding: 15px 0;
+      text-align: center;
+      background: #336699;
+    }
+  </style>
+</head>
+
+<body>
+<div class="main">
+  <div class="am-g">
+    <div class="am-u-lg-12">
+      <h1 class="main-title">Bee：中文NLP语料标注系统（测试版）</h1>
+      <p>请联系<a href="https://github.com/del2z" target="_blank">del2z</a>获取使用帮助~
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="detail">
+  <div class="am-g am-container">
+    <div class="am-u-lg-12">
       <%
         @yield
       %>
     </div>
-    <!-- <script src="/js/application.js"></script> -->
-  </body>
+  </div>
+</div>
+
+<footer class="footer">
+  <p>
+    Copyright &#169; 2019 <a href="https://github.com/del2z" target="_blank">del2z</a>. Licensed under <a href="http://opensource.org/licenses/MIT" target="_blank">MIT license</a>.
+  </p>
+</footer>
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/amazeui.min.js"></script>
+</body>
 </html>
